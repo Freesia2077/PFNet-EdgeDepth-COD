@@ -141,6 +141,26 @@ This repository builds upon the official PFNet implementation and is inspired by
 
 ## Citation
 
-If this project is useful, please cite the original PFNet paper and related works:
+This project is based on PFNet and is inspired by related works on boundary-guided COD, source-free depth priors, and PVTv2 backbone design. If this repository is useful, please cite the following papers.
+
+### PFNet
 
 Mei, H., Ji, G.-P., Wei, Z., Yang, X., Wei, X., and Fan, D.-P. Camouflaged Object Segmentation with Distraction Mining. CVPR, 2021.
+
+### Boundary-Guided COD / BGNet
+
+Sun, Y., Wang, S., Chen, C., and Xiang, T.-Z. Boundary-Guided Camouflaged Object Detection. IJCAI, 2022, pp. 1335--1341.
+
+### Source-Free Depth / PopNet
+
+Wu, Z., Paudel, D. P., Fan, D.-P., Wang, J., Wang, S., Demonceaux, C., Timofte, R., and Van Gool, L. Source-free Depth for Object Pop-out. ICCV, 2023.
+
+### PVTv2
+
+Wang, W., Xie, E., Li, X., Fan, D.-P., Song, K., Liang, D., Lu, T., Luo, P., and Shao, L. PVT v2: Improved Baselines with Pyramid Vision Transformer. Computational Visual Media, 8(3):415--424, 2022.
+
+## Code Reference
+
+The PVTv2 backbone implementation used in this project refers to the following open-source implementation:
+
+- PVTv2 implementation from MSCAF-COD: `https://github.com/yuliu316316/MSCAF-COD/blob/master/lib/pvtv2.py`
