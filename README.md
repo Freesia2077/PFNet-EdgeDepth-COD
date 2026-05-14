@@ -1,4 +1,3 @@
-```markdown
 # PFNet-EdgeDepth-COD
 
 Reproduction and enhancement of PFNet for camouflaged object detection, including baseline reproduction, PVTv2 backbone replacement, edge-aware auxiliary learning, and depth-prior fusion.
