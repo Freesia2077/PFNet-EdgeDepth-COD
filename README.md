@@ -118,14 +118,14 @@ The original PFNet evaluation code is located in:
 
 ## Results
 
-| Method | CHAMELEON S↑ | CHAMELEON F↑ | CAMO S↑ | CAMO F↑ | COD10K S↑ | COD10K F↑ | COD10K M↓ |
-|---|---:|---:|---:|---:|---:|---:|---:|
-| PFNet official | 0.882 | 0.810 | 0.782 | 0.695 | 0.800 | 0.660 | 0.040 |
-| PFNet reproduced | TODO | TODO | TODO | TODO | TODO | TODO | TODO |
-| PFNet + 512 input | 0.895 | 0.834 | 0.784 | 0.702 | 0.813 | 0.684 | 0.037 |
-| PFNet + PVTv2-B2 | 0.901 | 0.842 | 0.852 | 0.796 | 0.853 | 0.749 | 0.027 |
-| PFNet + Edge | TODO | TODO | TODO | TODO | TODO | TODO | TODO |
-| PFNet + Depth | TODO | TODO | TODO | TODO | TODO | TODO | TODO |
+| Method | CHAMELEON S↑ | CHAMELEON E↑ | CHAMELEON F↑ | CHAMELEON M↓ | CAMO S↑ | CAMO E↑ | CAMO F↑ | CAMO M↓ | COD10K S↑ | COD10K E↑ | COD10K F↑ | COD10K M↓ |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
+| PFNet official | 0.882 | 0.942 | 0.810 | 0.033 | 0.782 | 0.852 | 0.695 | 0.085 | 0.800 | 0.868 | 0.660 | 0.040 |
+| PFNet + Adam | 0.824 | 0.875 | 0.685 | 0.058 | 0.694 | 0.791 | 0.530 | 0.123 | 0.727 | 0.766 | 0.506 | 0.064 |
+| PFNet + 512 input | 0.895 | 0.942 | 0.834 | 0.028 | 0.784 | 0.856 | 0.702 | 0.085 | 0.813 | 0.882 | 0.684 | 0.037 |
+| PFNet + PVTv2-B2 | 0.901 | 0.934 | 0.842 | 0.027 | 0.852 | 0.908 | 0.796 | 0.055 | 0.853 | 0.908 | 0.749 | 0.027 |
+| PFNet + Edge | 0.884 | 0.947 | 0.817 | 0.031 | 0.776 | 0.850 | 0.691 | 0.085 | 0.800 | 0.871 | 0.661 | 0.039 |
+| PFNet + Depth | 0.883 | 0.935 | 0.812 | 0.033 | 0.766 | 0.844 | 0.671 | 0.088 | 0.793 | 0.869 | 0.650 | 0.041 |
 
 ## Main Findings
 
