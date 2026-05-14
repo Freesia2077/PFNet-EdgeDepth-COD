@@ -1,63 +1,127 @@
 # PFNet-EdgeDepth-COD
-PyTorch implementation and experimental study of PFNet-based camouflaged object detection with PVTv2 backbone, edge-aware learning, and RGB-D depth-prior fusion.
+
+Reproduction and enhancement of PFNet for camouflaged object detection, including baseline reproduction, PVTv2 backbone replacement, edge-aware auxiliary learning, and depth-prior fusion.
 
 ## Overview
 
-Camouflaged Object Detection (COD) aims to segment objects that are visually blended into their surroundings. This repository reproduces PFNet as the baseline and explores several architectural and training improvements for more accurate camouflaged object segmentation.
+Camouflaged Object Detection (COD) aims to segment objects that are visually blended into their surroundings. This repository reproduces PFNet as the baseline and explores several improvements, including:
 
-The project includes:
-
-- PFNet reproduction and inference pipeline
-- Training and hyperparameter analysis
 - PVTv2-B2 backbone replacement
 - Edge-aware auxiliary learning
 - RGB-D / depth-prior fusion
-- Evaluation on CHAMELEON, CAMO, and COD10K
-- Qualitative and quantitative result analysis
+- Hyperparameter tuning and experimental analysis
 
-## Motivation
+The project is mainly based on PFNet and related works on boundary-guided COD and source-free depth priors.
 
-Camouflaged objects often share highly similar texture, color, and structure with the background, making them difficult to detect using generic object detection or salient object detection methods. PFNet addresses this problem through a positioning-and-focus mechanism, while this project further investigates whether stronger backbones, boundary guidance, and depth cues can improve segmentation quality.
-
-## Method
-
-### Baseline: PFNet
-
-PFNet contains two main components:
-
-- Positioning Module: locates potential camouflaged objects from high-level features.
-- Focus Module: mines false-positive and false-negative distractions to refine segmentation results.
-
-### Improvement 1: PVTv2-B2 Backbone
-
-The original ResNet-50 backbone is replaced with PVTv2-B2 to enhance global context modeling and multi-scale feature representation.
-
-### Improvement 2: Edge-Aware Learning
-
-An auxiliary edge branch is introduced to strengthen boundary perception. The design includes edge-aware feature modeling and edge-guided feature enhancement.
-
-### Improvement 3: Depth-Prior Fusion
-
-Depth information is introduced as an additional geometric prior. The model explores RGB-D fusion to improve object localization and boundary refinement in visually ambiguous scenes.
-
-## Dataset
-
-Experiments are conducted on commonly used COD datasets:
-
-- CHAMELEON
-- CAMO
-- COD10K
-
-Please download the datasets from their official sources and organize them as follows:
+## Repository Structure
 
 ```text
+PFNet-EdgeDepth-COD/
+├── CVPR2021_PFNet-main/   # Original PFNet reproduction baseline
+├── PVTv2/                 # PFNet with PVTv2-B2 backbone
+├── BG/                    # Edge-aware / boundary-guided variant
+├── depth/                 # Depth-prior fusion variant
+├── README.md
+├── requirements.txt
+└── environment.yml
+Datasets
+
+Experiments are conducted on three commonly used COD datasets:
+
+CHAMELEON
+CAMO
+COD10K
+
+Please download the datasets from their official sources. The dataset files are not included in this repository.
+
+A possible dataset structure is:
+
 datasets/
-  CHAMELEON/
-    image/
-    mask/
-  CAMO/
-    image/
-    mask/
-  COD10K/
-    image/
-    mask/
+├── TrainDataset/
+│   ├── Image/
+│   └── GT/
+├── TestDataset/
+│   ├── CHAMELEON/
+│   │   ├── Image/
+│   │   └── GT/
+│   ├── CAMO/
+│   │   ├── Image/
+│   │   └── GT/
+│   └── COD10K/
+│       ├── Image/
+│       └── GT/
+└── Depth/
+Installation
+
+Clone this repository:
+
+git clone https://github.com/Freesia2077/PFNet-EdgeDepth-COD.git
+cd PFNet-EdgeDepth-COD
+
+Create a conda environment:
+
+conda env create -f environment.yml
+conda activate pfnet-cod
+
+Alternatively, install dependencies with pip:
+
+pip install -r requirements.txt
+Training
+
+For the original PFNet baseline, enter the baseline directory:
+
+cd CVPR2021_PFNet-main
+python train.py
+
+For other variants, please enter the corresponding directory and run the training script:
+
+cd PVTv2
+python train.py
+cd BG
+python train.py
+cd depth
+python train.py
+
+Please modify dataset paths, pretrained backbone paths, and checkpoint paths according to your local environment.
+
+Inference
+
+Example:
+
+python infer.py
+
+The prediction maps will be saved to the configured result directory.
+
+Evaluation
+
+This project uses standard COD evaluation metrics:
+
+S-measure
+Adaptive E-measure
+Weighted F-measure
+Mean Absolute Error
+
+The original PFNet evaluation code is located in:
+
+CVPR2021_PFNet-main/eval/
+Results
+Method	CHAMELEON S↑	CHAMELEON F↑	CAMO S↑	CAMO F↑	COD10K S↑	COD10K F↑	COD10K M↓
+PFNet official	0.882	0.810	0.782	0.695	0.800	0.660	0.040
+PFNet reproduced	TODO	TODO	TODO	TODO	TODO	TODO	TODO
+PFNet + 512 input	0.895	0.834	0.784	0.702	0.813	0.684	0.037
+PFNet + PVTv2-B2	0.901	0.842	0.852	0.796	0.853	0.749	0.027
+PFNet + Edge	TODO	TODO	TODO	TODO	TODO	TODO	TODO
+PFNet + Depth	TODO	TODO	TODO	TODO	TODO	TODO	TODO
+Main Findings
+SGD with momentum shows better generalization than Adam in the PFNet reproduction experiments.
+Increasing the input resolution from 416 to 512 improves fine-detail perception.
+Replacing ResNet-50 with PVTv2-B2 strengthens global context modeling.
+Edge-aware auxiliary learning helps improve boundary quality.
+Depth priors can provide useful geometric cues, but noisy depth maps may hurt performance in complex scenes.
+Acknowledgement
+
+This repository builds upon the official PFNet implementation and is inspired by related works on PVTv2, boundary-guided camouflaged object detection, and source-free depth priors.
+
+Citation
+
+If this project is useful, please cite the original PFNet paper and related works.
